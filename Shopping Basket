@@ -1,28 +1,37 @@
 object PriceBasket {
+  // Define item prices as a Map, where the key is the item name and the value is the price
   val itemPrices: Map[String, Double] = Map(
-    "Soup" -> 0.65,
-    "Bread" -> 0.80,
-    "Milk" -> 1.30,
-    "Apples" -> 1.00
+    "Soup" -> 0.65,     // Price of Soup
+    "Bread" -> 0.80,    // Price of Bread
+    "Milk" -> 1.30,     // Price of Milk
+    "Apples" -> 1.00    // Price of Apples
   )
 
+  // Define special offers as a Map, where the key is the item name and the value is a Map of offer details
   val specialOffers: Map[String, Map[String, Any]] = Map(
-    "Apples" -> Map("discountPercentage" -> 0.10),
+    "Apples" -> Map("discountPercentage" -> 0.10), // Apples have a 10% discount
     "Bread" -> Map("discountPercentage" -> 0.50, "discountedItem" -> "Soup", "requiredQuantity" -> 2)
+    // Buy 2 soups and get Bread at 50% off
   )
 
+  // Calculate subtotal and item counts based on the given items list
   def calculateSubtotal(items: List[String]): (Double, Map[String, Int]) = {
+    // Group items and count their occurrences using the `groupBy` and `mapValues` functions
     val itemCounts = items.groupBy(identity).view.mapValues(_.size).toMap
+    // Calculate subtotal by summing the prices of all items in the given list using `flatMap` and `sum`
     val subtotal = items.flatMap(itemPrices.get).sum
 
     (subtotal, itemCounts)
   }
 
+  // Apply special offers and calculate the total discount based on the item counts
   def applySpecialOffers(itemCounts: Map[String, Int]): Double = {
+    // Iterate over the item counts and accumulate the total discount using `foldLeft`
     itemCounts.foldLeft(0.0) { case (totalDiscount, (item, count)) =>
       specialOffers.get(item) match {
         case Some(offer) if offer.contains("discountPercentage") =>
           val discountPercentage = offer("discountPercentage").asInstanceOf[Double]
+          // Calculate the discount amount for the current item based on the discount percentage and count
           val discountAmount = itemPrices(item) * discountPercentage * count
           println(s"$item ${discountPercentage * 100}% off: £${discountAmount}%.2f")
           totalDiscount + discountAmount
@@ -32,6 +41,7 @@ object PriceBasket {
     }
   }
 
+  // Calculate the total price and display the output
   def calculateTotalPrice(items: List[String]): Unit = {
     val (subtotal, itemCounts) = calculateSubtotal(items)
     println(f"Subtotal: £$subtotal%.2f")
@@ -46,6 +56,7 @@ object PriceBasket {
     println(f"Total price: £$totalPrice%.2f")
   }
 
+  // Entry point of the program
   def main(args: Array[String]): Unit = {
     val items = args.toList
     calculateTotalPrice(items)
