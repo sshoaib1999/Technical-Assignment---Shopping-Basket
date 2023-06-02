@@ -8,22 +8,36 @@ This program calculates the total price of items in a shopping basket, taking in
 
 
 Scala
+
 Visit the official Scala website at https://www.scala-lang.org/download/.
+
 Scroll down to the "Latest Releases" section and click on the download link for the latest version of Scala for Windows.
+
 Choose the installer appropriate for your system (32-bit or 64-bit) and click on the download link.
+
 Once the download is complete, run the installer and follow the on-screen instructions.
+
 During the installation process, you may be asked to specify the installation directory. Choose a suitable location and proceed with the installation.
+
 After the installation is complete, open a new command prompt or terminal window and type scala -version to verify that Scala is installed correctly. You should see the Scala version information printed on the screen.
 
 Git
+
 Visit the official Git website at https://git-scm.com/downloads.
+
 Scroll down to the "Downloads" section and click on the download link for the Windows version.
+
 The download will start automatically. Once it is complete, run the installer.
+
 In the Git Setup wizard, follow the on-screen instructions, leaving the default options selected unless you have specific preferences.
+
 On the "Adjusting your PATH environment" screen, select the option "Git from the command line and also from 3rd-party software."
+
 Choose the default line ending conversion option (either "Checkout Windows-style, commit Unix-style line endings" or "Checkout as-is, commit Unix-style line endings").
+
 Choose the default terminal emulator for Git (either "Use Git Bash only" or "Use Git and optional Unix tools from the Windows Command Prompt").
 Leave the default options selected for configuring extra features and completing the installation.
+
 After the installation is complete, open a new command prompt or terminal window and type git --version to verify that Git is installed correctly. You should see the Git version information printed on the screen.
 
 3. Open your terminal or command prompt.
