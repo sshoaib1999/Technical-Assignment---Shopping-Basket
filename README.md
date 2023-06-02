@@ -47,7 +47,6 @@ Here are some example test cases you can try:
       ```shell
       scala PriceBasket.scala Milk Bread Apples
 
-
 Feel free to modify and add your own test cases to explore the program's functionality.
 
 ## License
