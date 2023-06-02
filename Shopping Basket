@@ -1,0 +1,53 @@
+object PriceBasket {
+  val itemPrices: Map[String, Double] = Map(
+    "Soup" -> 0.65,
+    "Bread" -> 0.80,
+    "Milk" -> 1.30,
+    "Apples" -> 1.00
+  )
+
+  val specialOffers: Map[String, Map[String, Any]] = Map(
+    "Apples" -> Map("discountPercentage" -> 0.10),
+    "Bread" -> Map("discountPercentage" -> 0.50, "discountedItem" -> "Soup", "requiredQuantity" -> 2)
+  )
+
+  def calculateSubtotal(items: List[String]): (Double, Map[String, Int]) = {
+    val itemCounts = items.groupBy(identity).view.mapValues(_.size).toMap
+    val subtotal = items.flatMap(itemPrices.get).sum
+
+    (subtotal, itemCounts)
+  }
+
+  def applySpecialOffers(itemCounts: Map[String, Int]): Double = {
+    itemCounts.foldLeft(0.0) { case (totalDiscount, (item, count)) =>
+      specialOffers.get(item) match {
+        case Some(offer) if offer.contains("discountPercentage") =>
+          val discountPercentage = offer("discountPercentage").asInstanceOf[Double]
+          val discountAmount = itemPrices(item) * discountPercentage * count
+          println(s"$item ${discountPercentage * 100}% off: £${discountAmount}%.2f")
+          totalDiscount + discountAmount
+
+        case _ => totalDiscount
+      }
+    }
+  }
+
+  def calculateTotalPrice(items: List[String]): Unit = {
+    val (subtotal, itemCounts) = calculateSubtotal(items)
+    println(f"Subtotal: £$subtotal%.2f")
+
+    val totalDiscount = applySpecialOffers(itemCounts)
+
+    if (totalDiscount == 0) {
+      println("(No offers available)")
+    }
+
+    val totalPrice = subtotal - totalDiscount
+    println(f"Total price: £$totalPrice%.2f")
+  }
+
+  def main(args: Array[String]): Unit = {
+    val items = args.toList
+    calculateTotalPrice(items)
+  }
+}
