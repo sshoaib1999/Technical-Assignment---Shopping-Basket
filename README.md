@@ -9,10 +9,12 @@ This program calculates the total price of items in a shopping basket, taking in
 2. Open your terminal or command prompt.
 3. Clone the repository using the following command:
 
-   ```shell git clone https://github.com/your-username/shopping-basket.git
+   ```shell 
+   git clone https://github.com/your-username/shopping-basket.git
 
 4. Change to the project directory:
-     ```shell cd shopping-basket
+     ```shell 
+     cd shopping-basket
 
 ## Usage
 
