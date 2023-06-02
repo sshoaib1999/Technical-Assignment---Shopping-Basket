@@ -8,10 +8,8 @@ This program calculates the total price of items in a shopping basket, taking in
 1. Ensure that you have Scala and Git installed on your machine.
 2. Open your terminal or command prompt.
 3. Clone the repository using the following command:
-
    ```shell 
    git clone https://github.com/your-username/shopping-basket.git
-
 4. Change to the project directory:
      ```shell 
      cd shopping-basket
