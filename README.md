@@ -1,4 +1,3 @@
-# Technical-Assignment---Shopping-Basket
 # Shopping Basket Program
 
 This program calculates the total price of items in a shopping basket, taking into account special offers and discounts.
